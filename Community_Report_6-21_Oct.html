@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community Report 6 to 21 Oct</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0; --card:#ffffff; --ink:#1d1b18; --muted:#6b665e; --line:#e8e3da;
+  --accent:#f26b1d; --accent-soft:#fdeee3; --green:#1f8a4c; --green-soft:#e5f4ea;
+  --red:#c2412d; --red-soft:#fbe9e5; --amber:#b7791f; --amber-soft:#fbf1dc; --blue:#2f5fa7; --blue-soft:#e7eef9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 16px 64px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.brand{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:28px;margin:4px 0 0;font-weight:800;letter-spacing:-.02em}
+.period{font-size:14px;color:var(--muted);font-weight:500}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line);margin-bottom:22px}
+nav.tabs button{font:inherit;font-weight:600;font-size:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
+nav.tabs button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.page{display:none}.page.active{display:block}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.kpi .label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.kpi .value{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.kpi .sub{font-size:13px;color:var(--muted);margin-top:2px}
+.up{color:var(--green)}.down{color:var(--red)}
+section{margin-top:22px}
+h2{font-size:18px;margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
+h2 small{font-size:13px;color:var(--muted);font-weight:500;margin-left:6px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;background:#faf8f5}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;background:#faf8f5;border-bottom:none}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.c-high{background:var(--green-soft);color:var(--green)}
+.c-med{background:var(--blue-soft);color:var(--blue)}
+.c-low{background:var(--amber-soft);color:var(--amber)}
+.c-vlow{background:#f0ede8;color:var(--muted)}
+.c-silent{background:var(--red-soft);color:var(--red)}
+.bars .row{display:grid;grid-template-columns:130px 1fr 70px;align-items:center;gap:12px;margin:10px 0}
+.bars .name{font-weight:600;font-size:14px}
+.bars .track{height:14px;background:#f0ede8;border-radius:4px;overflow:hidden}
+.bars .fill{height:100%;background:var(--accent);border-radius:4px}
+.bars .val{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.notice{border-radius:14px;padding:16px 18px;border:1px solid}
+.notice.warn{background:var(--amber-soft);border-color:#f0dcae}
+.notice.info{background:var(--blue-soft);border-color:#cfdcf1}
+.notice.red{background:var(--red-soft);border-color:#f2cdc5}
+.notice .t{font-weight:700;margin-bottom:4px}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:7px 0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:var(--accent-soft);color:#9a420f;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px}
+.two{grid-template-columns:1fr 1fr}
+@media(max-width:760px){.two{grid-template-columns:1fr}.bars .row{grid-template-columns:96px 1fr 56px}}
+.comm-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.comm-head .meta{color:var(--muted);font-size:14px}
+.tag{font-size:12px;color:var(--muted)}
+.ct{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.bars .row2{display:grid;grid-template-columns:130px 1fr 70px;align-items:center;gap:12px;margin:14px 0}.bars .row2 .name{font-weight:600;font-size:14px}.bars .row2 .val{text-align:right;font-weight:700;font-size:13px;line-height:1.35}
+.legend{display:flex;gap:16px;font-size:13px;margin:-4px 0 8px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.foot{margin-top:28px;font-size:12px;color:var(--muted)}
+.tablewrap{overflow-x:auto}
+@media print{nav.tabs{display:none}.page{display:block!important;page-break-after:always}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <div class="brand">amber · Global Aspirants</div>
+    <h1>Community Report</h1>
+  </div>
+  <div class="period">6 Oct → 14 Oct → 21 Oct 2026</div>
+</header>
+
+<nav class="tabs">
+  <button class="active" data-p="ov">Overview</button>
+  <button data-p="c1">Community #1</button>
+  <button data-p="c2">Community #2</button>
+  <button data-p="c3">Community #3</button>
+  <button data-p="c4">Community #4</button>
+  <button data-p="mk">Short.io · GA4 · Search Console</button>
+</nav>
+
+<!-- ===================== OVERVIEW ===================== -->
+<div class="page active" id="ov">
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">Total members</div><div class="value">7,134</div><div class="sub up">+471 since 6 Oct</div></div>
+    <div class="card kpi"><div class="label">Member growth</div><div class="value up">+7.07%</div><div class="sub">6,663 → 7,134</div></div>
+    <div class="card kpi"><div class="label">Messages</div><div class="value">3,084</div><div class="sub">across all communities</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">410</div><div class="sub">people who posted</div></div>
+  </div>
+
+  <section>
+    <h2>Member Count <small>vs last report</small></h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Community</th><th class="num">Last (30 Sep to 6 Oct)</th><th class="num">Today (21 Oct)</th><th class="num">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Community #1</td><td class="num">1,797</td><td class="num">1,775</td><td class="num down">−22</td></tr>
+          <tr><td>Community #2</td><td class="num">1,590</td><td class="num">1,566</td><td class="num down">−24</td></tr>
+          <tr><td>Community #3</td><td class="num">1,875</td><td class="num">1,826</td><td class="num down">−49</td></tr>
+          <tr><td>Community #4</td><td class="num">1,401</td><td class="num">1,967</td><td class="num up">+566</td></tr>
+          <tr class="total"><td>Total</td><td class="num">6,663</td><td class="num">7,134</td><td class="num up">+471 (+7.07%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="notice warn">
+      <div class="t">Membership Trend Notice</div>
+      All of this period's growth came from Community #4 (+566). Communities #1, #2 and #3 each lost members again (−22, −24, −49), so the net total is up only because #4 is still growing.
+    </div>
+  </section>
+
+  <section>
+    <h2>Week by Week <small>6 to 14 Oct vs 15 to 21 Oct</small></h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Community</th><th class="num">Messages<br>6 to 14 Oct</th><th class="num">Messages<br>15 to 21 Oct</th><th class="num">Change</th><th class="num">Active members<br>6 to 14 Oct</th><th class="num">Active members<br>15 to 21 Oct</th></tr></thead>
+        <tbody><tr><td>Community #1</td><td class="num">37</td><td class="num">10</td><td class="num down">-27</td><td class="num">20</td><td class="num">7</td></tr><tr><td>Community #2</td><td class="num">47</td><td class="num">18</td><td class="num down">-29</td><td class="num">19</td><td class="num">7</td></tr><tr><td>Community #3</td><td class="num">162</td><td class="num">29</td><td class="num down">-133</td><td class="num">49</td><td class="num">14</td></tr><tr><td>Community #4</td><td class="num">2,237</td><td class="num">544</td><td class="num down">-1,693</td><td class="num">248</td><td class="num">116</td></tr>
+          <tr class="total"><td>Total</td><td class="num">2,483</td><td class="num">601</td><td class="num down">−1,882</td><td class="num">336</td><td class="num">144</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card bars" style="margin-top:14px">
+      <div class="legend"><span><i style="background:#f26b1d"></i>6 to 14 Oct</span><span><i style="background:#2f5fa7"></i>15 to 21 Oct</span></div>
+      <div class="row2"><div class="name">Community #1</div><div><div class="track" style="height:10px"><div class="fill" style="width:1.7%;background:#f26b1d"></div></div><div style="height:4px"></div><div class="track" style="height:10px"><div class="fill" style="width:0.6%;background:#2f5fa7"></div></div></div><div class="val">37<br><span style="color:#2f5fa7">10</span></div></div><div class="row2"><div class="name">Community #2</div><div><div class="track" style="height:10px"><div class="fill" style="width:2.1%;background:#f26b1d"></div></div><div style="height:4px"></div><div class="track" style="height:10px"><div class="fill" style="width:0.8%;background:#2f5fa7"></div></div></div><div class="val">47<br><span style="color:#2f5fa7">18</span></div></div><div class="row2"><div class="name">Community #3</div><div><div class="track" style="height:10px"><div class="fill" style="width:7.2%;background:#f26b1d"></div></div><div style="height:4px"></div><div class="track" style="height:10px"><div class="fill" style="width:1.3%;background:#2f5fa7"></div></div></div><div class="val">162<br><span style="color:#2f5fa7">29</span></div></div><div class="row2"><div class="name">Community #4</div><div><div class="track" style="height:10px"><div class="fill" style="width:100.0%;background:#f26b1d"></div></div><div style="height:4px"></div><div class="track" style="height:10px"><div class="fill" style="width:24.3%;background:#2f5fa7"></div></div></div><div class="val">2,237<br><span style="color:#2f5fa7">544</span></div></div>
+    </div>
+    <div class="notice warn" style="margin-top:14px">
+      <div class="t">Activity dropped in the second week</div>
+      Messages fell from 2,483 to 601 (−76%) across all communities. Part of week 1 is the 14 Oct spike in Community #4's General group (663 messages in one day), but every community was quieter in week 2.
+    </div>
+  </section>
+
+  <section>
+    <h2>Posted by the amber Team</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>8 Oct:</b> In Community #2's UK group, the team answered a London accommodation cost question and pointed to amberstudent.com.</li>
+        <li><b>9 Oct:</b> Webinar topic survey sent to all communities, asking what live webinars hosted by international students should cover. A reminder with the form link followed on <b>12 Oct</b>.</li>
+        <li><b>16 Oct:</b> Scholarship Application Links page shared in the General groups.</li>
+        <li><b>17 Oct:</b> Scam warning in Community #4 after a suspicious link was deleted, telling members not to click unknown links.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Headline Takeaways</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Community #4 is the whole community right now.</b> It had 2,781 of 3,084 messages (90%) and 309 of 410 active members. The busiest day was 14 Oct, with 663 messages in its General group alone.</li>
+        <li><b>"How do I apply for Amber Scholar?" is the most repeated question.</b> Members kept asking about CGPA, IELTS, acceptance letters, professor acceptance, applying after Class 12 and transfer students. A pinned official FAQ would answer most of these.</li>
+        <li><b>Trust questions about Amber Scholar came up in two communities.</b> In #1 Australia, members asked whether anyone had actually received the scholarship and whether their data was just being collected. In #4 General, members questioned whether the group is linked to the official amber site and noted the admins were silent.</li>
+        <li><b>Communities #1 and #2 are close to silent.</b> They had 47 and 65 messages, and #1's Germany group had none.</li>
+        <li><b>Good organic moments in #3.</b> Members shared new offer letters (Anglia Ruskin, Hofstra, a US R1 university) and the group celebrated together.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="notice red">
+      <div class="t">Needs Attention</div>
+      <ul class="clean">
+        <li><b>Incorrect claims about Amber Scholar (#4):</b> one member posted unverified claims about the scholarship amount and who is eligible, and repeated them across several groups. An official correction or pinned FAQ is worth posting.</li>
+        <li><b>Unsolicited posts:</b> a legal help request copied into 4 groups (#2); a "DM me" message copied into 4 groups (#3); a private room-to-rent listing (#1 UK); a member offering to "help with your application" (#4); unrelated promo links (#3 UK, #4 USA).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="notice info">
+      <div class="t">Not in this report</div>
+      IG Broadcast numbers are left out because no new count was shared for this period. Community #2's General group is also not included because its export was a copy of Community #1's General chat.
+    </div>
+  </section>
+</div>
+
+<!-- ===================== COMMUNITY #1 ===================== -->
+<div class="page" id="c1">
+  <div class="comm-head">
+    <div><h2 style="font-size:22px;margin:0">Community #1</h2><div class="tag">Created 14 Apr 2026 · 6 groups</div></div>
+    <div class="meta">1,775 members · <span class="down">−22 since 6 Oct</span></div>
+  </div>
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">Members</div><div class="value">1,775</div><div class="sub down">−22</div></div>
+    <div class="card kpi"><div class="label">Messages</div><div class="value">47</div><div class="sub">6 to 21 Oct</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">23</div><div class="sub">people who posted</div></div>
+    <div class="card kpi"><div class="label">Most active</div><div class="value" style="font-size:24px">UK</div><div class="sub">29 messages</div></div>
+  </div>
+
+  <section>
+    <h2>Group Snapshots</h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Group</th><th class="num">6 to 14 Oct</th><th class="num">15 to 21 Oct</th><th class="num">Total messages</th><th class="num">Active members</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>🇬🇧 UK</td><td class="num">23</td><td class="num">6</td><td class="num"><b>29</b></td><td class="num">12</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>💬 General</td><td class="num">5</td><td class="num">1</td><td class="num"><b>6</b></td><td class="num">3</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇦🇺 Australia</td><td class="num">6</td><td class="num">0</td><td class="num"><b>6</b></td><td class="num">5</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇨🇦 Canada</td><td class="num">2</td><td class="num">3</td><td class="num"><b>5</b></td><td class="num">4</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇺🇸 USA</td><td class="num">1</td><td class="num">0</td><td class="num"><b>1</b></td><td class="num">1</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇩🇪 Germany</td><td class="num">0</td><td class="num">0</td><td class="num"><b>0</b></td><td class="num">0</td><td><span class="chip c-silent">Silent</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Main Topics Discussed</h2>
+    <div class="card pills">
+      <span class="pill">UK accommodation (Leeds, Surrey)</span>
+      <span class="pill">PBSA vs private housing</span>
+      <span class="pill">Amber Scholar results</span>
+      <span class="pill">Finding students at the same university</span>
+      <span class="pill">GS interview (Australia)</span>
+      <span class="pill">Universities in Italy</span>
+      <span class="pill">Financial aid for tuition</span>
+      <span class="pill">Webinar topic survey</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Highlights</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>UK did the work:</b> a member who moved this September recommended private housing and the amber app, and confirmed shared rooms are available on it.</li>
+        <li>Students looked for others at Leeds, Edinburgh Napier, Aston and Nottingham Trent.</li>
+        <li><b>Trust concern (Australia, 11 Oct):</b> members asked whether anyone had actually received Amber Scholar and whether their data was just being collected. No one from the team replied.</li>
+        <li>A member posted a private room-to-rent listing near the University of Surrey (£600 incl. bills) more than once.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== COMMUNITY #2 ===================== -->
+<div class="page" id="c2">
+  <div class="comm-head">
+    <div><h2 style="font-size:22px;margin:0">Community #2</h2><div class="tag">Created 14 Jul 2026 · 5 groups in this report</div></div>
+    <div class="meta">1,566 members · <span class="down">−24 since 6 Oct</span></div>
+  </div>
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">Members</div><div class="value">1,566</div><div class="sub down">−24</div></div>
+    <div class="card kpi"><div class="label">Messages</div><div class="value">65</div><div class="sub">6 to 21 Oct</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">23</div><div class="sub">people who posted</div></div>
+    <div class="card kpi"><div class="label">Most active</div><div class="value" style="font-size:24px">UK</div><div class="sub">31 messages</div></div>
+  </div>
+
+  <section>
+    <h2>Group Snapshots</h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Group</th><th class="num">6 to 14 Oct</th><th class="num">15 to 21 Oct</th><th class="num">Total messages</th><th class="num">Active members</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>🇬🇧 UK</td><td class="num">13</td><td class="num">18</td><td class="num"><b>31</b></td><td class="num">11</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>🇩🇪 Germany</td><td class="num">27</td><td class="num">0</td><td class="num"><b>27</b></td><td class="num">12</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>🇺🇸 USA</td><td class="num">5</td><td class="num">0</td><td class="num"><b>5</b></td><td class="num">3</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇦🇺 Australia</td><td class="num">1</td><td class="num">0</td><td class="num"><b>1</b></td><td class="num">1</td><td><span class="chip c-vlow">Very low</span></td></tr>
+          <tr><td>🇨🇦 Canada</td><td class="num">1</td><td class="num">0</td><td class="num"><b>1</b></td><td class="num">1</td><td><span class="chip c-vlow">Very low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tag" style="margin:8px 4px 0">General group not included: the export shared was a copy of Community #1's General chat.</p>
+  </section>
+
+  <section>
+    <h2>Main Topics Discussed</h2>
+    <div class="card pills">
+      <span class="pill">London accommodation costs</span>
+      <span class="pill">Fully funded Master's in the UK</span>
+      <span class="pill">UK job prospects</span>
+      <span class="pill">Jan 2027 & Sep 2027 intakes</span>
+      <span class="pill">German university merit & admissions</span>
+      <span class="pill">Visa appointment delays</span>
+      <span class="pill">Language tests</span>
+      <span class="pill">Malengo scholarship</span>
+      <span class="pill">CS scholarship exams</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Highlights</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>UK:</b> a law student asked about London accommodation costs and the team pointed to amberstudent.com. Others asked about fully funded Master's options and whether UK job prospects are worth it.</li>
+        <li><b>Germany:</b> students from Pakistan discussed merit requirements, visa appointment delays and language tests, plus whether it feels safe to move to Europe right now.</li>
+        <li>A request for a Delhi High Court lawyer (not study-abroad related) was copied into Australia, Canada, UK and USA. It was the only post in Australia and Canada this period.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== COMMUNITY #3 ===================== -->
+<div class="page" id="c3">
+  <div class="comm-head">
+    <div><h2 style="font-size:22px;margin:0">Community #3</h2><div class="tag">Created 3 Aug 2026 · 6 groups</div></div>
+    <div class="meta">1,826 members · <span class="down">−49 since 6 Oct</span></div>
+  </div>
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">Members</div><div class="value">1,826</div><div class="sub down">−49</div></div>
+    <div class="card kpi"><div class="label">Messages</div><div class="value">191</div><div class="sub">6 to 21 Oct</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">55</div><div class="sub">people who posted</div></div>
+    <div class="card kpi"><div class="label">Most active</div><div class="value" style="font-size:24px">General</div><div class="sub">61 messages</div></div>
+  </div>
+
+  <section>
+    <h2>Group Snapshots</h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Group</th><th class="num">6 to 14 Oct</th><th class="num">15 to 21 Oct</th><th class="num">Total messages</th><th class="num">Active members</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>💬 General</td><td class="num">59</td><td class="num">2</td><td class="num"><b>61</b></td><td class="num">24</td><td><span class="chip c-med">Medium</span></td></tr>
+          <tr><td>🇺🇸 USA</td><td class="num">34</td><td class="num">23</td><td class="num"><b>57</b></td><td class="num">15</td><td><span class="chip c-med">Medium</span></td></tr>
+          <tr><td>🇬🇧 UK</td><td class="num">36</td><td class="num">2</td><td class="num"><b>38</b></td><td class="num">20</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>🇩🇪 Germany</td><td class="num">19</td><td class="num">0</td><td class="num"><b>19</b></td><td class="num">6</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>🇦🇺 Australia</td><td class="num">12</td><td class="num">2</td><td class="num"><b>14</b></td><td class="num">8</td><td><span class="chip c-low">Low</span></td></tr>
+          <tr><td>🇨🇦 Canada</td><td class="num">2</td><td class="num">0</td><td class="num"><b>2</b></td><td class="num">2</td><td><span class="chip c-vlow">Very low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Main Topics Discussed</h2>
+    <div class="card pills">
+      <span class="pill">Offer letters & celebrations</span>
+      <span class="pill">Amber Scholar with a conditional offer</span>
+      <span class="pill">Education loans</span>
+      <span class="pill">US applications (Common App, Scoir)</span>
+      <span class="pill">Extracurriculars</span>
+      <span class="pill">DAAD & Erasmus</span>
+      <span class="pill">Private vs public universities in Germany</span>
+      <span class="pill">Deakin AI course costs</span>
+      <span class="pill">Contacting professors</span>
+      <span class="pill">Need-based scholarships</span>
+      <span class="pill">UK tuition under £10k</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Highlights</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Offers shared:</b> members posted new offers from Anglia Ruskin, Stirling, Hofstra and a US R1 university, and the group celebrated. One member explained how they applied (Common App, Scoir and direct applications).</li>
+        <li><b>Germany:</b> a member heading there in December offered to guide others. The group discussed DAAD's 2-year experience rule and Erasmus as an alternative.</li>
+        <li>A "DM me" message from one member was copied into 4 groups, inviting people to message privately. Given the private-message complaints in earlier reports, this is worth watching.</li>
+        <li>Unrelated links appeared in UK (an IIT design exam page and a blog post). Admins deleted several messages this period.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== COMMUNITY #4 ===================== -->
+<div class="page" id="c4">
+  <div class="comm-head">
+    <div><h2 style="font-size:22px;margin:0">Community #4</h2><div class="tag">Created 6 Sep 2026 · 6 groups</div></div>
+    <div class="meta">1,967 members · <span class="up">+566 since 6 Oct</span></div>
+  </div>
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">Members</div><div class="value">1,967</div><div class="sub up">+566</div></div>
+    <div class="card kpi"><div class="label">Messages</div><div class="value">2,781</div><div class="sub">6 to 21 Oct</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">309</div><div class="sub">people who posted</div></div>
+    <div class="card kpi"><div class="label">Most active</div><div class="value" style="font-size:24px">General</div><div class="sub">1,249 messages</div></div>
+  </div>
+
+  <section>
+    <h2>Group Snapshots</h2>
+    <div class="card tablewrap" style="padding:6px 8px">
+      <table>
+        <thead><tr><th>Group</th><th class="num">6 to 14 Oct</th><th class="num">15 to 21 Oct</th><th class="num">Total messages</th><th class="num">Active members</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>💬 General</td><td class="num">1,043</td><td class="num">206</td><td class="num"><b>1,249</b></td><td class="num">159</td><td><span class="chip c-high">High</span></td></tr>
+          <tr><td>🇬🇧 UK</td><td class="num">396</td><td class="num">117</td><td class="num"><b>513</b></td><td class="num">83</td><td><span class="chip c-high">High</span></td></tr>
+          <tr><td>🇩🇪 Germany</td><td class="num">353</td><td class="num">110</td><td class="num"><b>463</b></td><td class="num">79</td><td><span class="chip c-high">High</span></td></tr>
+          <tr><td>🇺🇸 USA</td><td class="num">180</td><td class="num">64</td><td class="num"><b>244</b></td><td class="num">61</td><td><span class="chip c-high">High</span></td></tr>
+          <tr><td>🇨🇦 Canada</td><td class="num">145</td><td class="num">34</td><td class="num"><b>179</b></td><td class="num">68</td><td><span class="chip c-med">Medium</span></td></tr>
+          <tr><td>🇦🇺 Australia</td><td class="num">120</td><td class="num">13</td><td class="num"><b>133</b></td><td class="num">44</td><td><span class="chip c-med">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Main Topics Discussed</h2>
+    <div class="card pills">
+      <span class="pill">How to apply for Amber Scholar</span>
+      <span class="pill">Amber Scholar eligibility (CGPA, IELTS, offer letter)</span>
+      <span class="pill">Fully funded Bachelor's & Master's</span>
+      <span class="pill">Medicine / MBBS scholarships</span>
+      <span class="pill">DAAD & Erasmus Mundus</span>
+      <span class="pill">Ausbildung & German B2</span>
+      <span class="pill">Germany living costs</span>
+      <span class="pill">UK visa rules & March 2027 intake</span>
+      <span class="pill">MOI vs IELTS (Australia)</span>
+      <span class="pill">Lester B. Pearson deadline</span>
+      <span class="pill">Introductions</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Highlights</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Real peer guidance:</b> in UK, one member answered dozens of questions in detail (UK scholarships for undergrads, visa compliance rules, choosing a course). In Germany, members broke down living costs, the 13-years-of-education rule and Ausbildung.</li>
+        <li><b>Amber Scholar questions everywhere:</b> how to apply, whether a CGPA or IELTS score is needed, whether you need an acceptance letter first, and whether Class 12 or transfer students can apply.</li>
+        <li><b>14 Oct spike:</b> 663 messages in General in one day, much of it late-night chat between a few members. Part of that thread questioned whether the group is linked to the official amber website and noted the admins weren't replying.</li>
+        <li>Unverified claims about Amber Scholar's amount and eligibility were posted across several groups. A member also offered to "help with your application", and an app promo link appeared in USA.</li>
+        <li>The team deleted a suspicious link and posted a scam warning on 17 Oct.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== LINKS & WEBSITE ===================== -->
+<div class="page" id="mk">
+  <section style="margin-top:0">
+    <h2>Short.io <small>20 Sep to 21 Oct</small></h2>
+    <div class="grid two">
+      <div class="card">
+        <div class="kpi"><div class="label">Inbound</div><div class="value">2,807</div><div class="sub">clicks</div></div>
+        <table style="margin-top:10px"><tbody>
+          <tr><td>/community-D</td><td class="num">2,743</td></tr>
+          <tr><td>/scholarship-teamC</td><td class="num">32</td></tr>
+          <tr><td>/COMMUNITY_4D</td><td class="num">24</td></tr>
+          <tr><td>/scholarship-teamB</td><td class="num">8</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card">
+        <div class="kpi"><div class="label">Outbound</div><div class="value">0</div><div class="sub">clicks</div></div>
+        <table style="margin-top:10px"><tbody>
+          <tr><td>/traveldeals</td><td class="num">0</td></tr>
+        </tbody></table>
+        <p class="tag" style="margin-top:12px">Total clicks across all links: 2,934 (2,861 human).</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Google Analytics (Landing Page) <small>23 Sep to 20 Oct</small></h2>
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">Active users</div><div class="value">137</div><div class="sub">all new</div></div>
+      <div class="card kpi"><div class="label">Page views</div><div class="value">184</div><div class="sub">bounce rate 42%</div></div>
+      <div class="card kpi"><div class="label">Avg. engagement</div><div class="value">48s</div><div class="sub">per active user</div></div>
+      <div class="card kpi"><div class="label">Events</div><div class="value">695</div><div class="sub">total</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="ct">New vs returning users per day</div><div class="legend"><span><i style="background:#f26b1d"></i>New</span><span><i style="background:#2f5fa7"></i>Returning</span></div>
+      <svg viewBox="0 0 900 230" width="100%" role="img"><line x1="34" x2="890" y1="194.0" y2="194.0" stroke="#e8e3da"/><text x="28" y="198.0" font-size="11" fill="#6b665e" text-anchor="end">0</text><line x1="34" x2="890" y1="149.0" y2="149.0" stroke="#e8e3da"/><text x="28" y="153.0" font-size="11" fill="#6b665e" text-anchor="end">5</text><line x1="34" x2="890" y1="104.0" y2="104.0" stroke="#e8e3da"/><text x="28" y="108.0" font-size="11" fill="#6b665e" text-anchor="end">10</text><line x1="34" x2="890" y1="59.0" y2="59.0" stroke="#e8e3da"/><text x="28" y="63.0" font-size="11" fill="#6b665e" text-anchor="end">15</text><line x1="34" x2="890" y1="14.0" y2="14.0" stroke="#e8e3da"/><text x="28" y="18.0" font-size="11" fill="#6b665e" text-anchor="end">20</text><rect x="38.9" y="122.0" width="20.8" height="72.0" fill="#f26b1d" rx="1.5"><title>23 Sep: New 8, Returning 1</title></rect><rect x="38.9" y="113.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>23 Sep: New 8, Returning 1</title></rect><text x="49.3" y="210" font-size="11" fill="#6b665e" text-anchor="middle">23 Sep</text><rect x="69.5" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>24 Sep: New 5, Returning 1</title></rect><rect x="69.5" y="140.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>24 Sep: New 5, Returning 1</title></rect><rect x="100.0" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>25 Sep: New 5, Returning 1</title></rect><rect x="100.0" y="140.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>25 Sep: New 5, Returning 1</title></rect><rect x="130.6" y="158.0" width="20.8" height="36.0" fill="#f26b1d" rx="1.5"><title>26 Sep: New 4, Returning 1</title></rect><rect x="130.6" y="149.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>26 Sep: New 4, Returning 1</title></rect><text x="141.0" y="210" font-size="11" fill="#6b665e" text-anchor="middle">26 Sep</text><rect x="161.2" y="104.0" width="20.8" height="90.0" fill="#f26b1d" rx="1.5"><title>27 Sep: New 10, Returning 1</title></rect><rect x="161.2" y="95.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>27 Sep: New 10, Returning 1</title></rect><rect x="191.7" y="95.0" width="20.8" height="99.0" fill="#f26b1d" rx="1.5"><title>28 Sep: New 11, Returning 1</title></rect><rect x="191.7" y="86.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>28 Sep: New 11, Returning 1</title></rect><rect x="222.3" y="140.0" width="20.8" height="54.0" fill="#f26b1d" rx="1.5"><title>29 Sep: New 6, Returning 0</title></rect><text x="232.7" y="210" font-size="11" fill="#6b665e" text-anchor="middle">29 Sep</text><rect x="252.9" y="140.0" width="20.8" height="54.0" fill="#f26b1d" rx="1.5"><title>30 Sep: New 6, Returning 1</title></rect><rect x="252.9" y="131.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>30 Sep: New 6, Returning 1</title></rect><rect x="283.5" y="113.0" width="20.8" height="81.0" fill="#f26b1d" rx="1.5"><title>1 Oct: New 9, Returning 1</title></rect><rect x="283.5" y="104.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>1 Oct: New 9, Returning 1</title></rect><rect x="314.0" y="158.0" width="20.8" height="36.0" fill="#f26b1d" rx="1.5"><title>2 Oct: New 4, Returning 2</title></rect><rect x="314.0" y="140.0" width="20.8" height="18.0" fill="#2f5fa7" rx="1.5"><title>2 Oct: New 4, Returning 2</title></rect><text x="324.4" y="210" font-size="11" fill="#6b665e" text-anchor="middle">2 Oct</text><rect x="344.6" y="185.0" width="20.8" height="9.0" fill="#f26b1d" rx="1.5"><title>3 Oct: New 1, Returning 0</title></rect><rect x="375.2" y="131.0" width="20.8" height="63.0" fill="#f26b1d" rx="1.5"><title>4 Oct: New 7, Returning 0</title></rect><rect x="405.7" y="140.0" width="20.8" height="54.0" fill="#f26b1d" rx="1.5"><title>5 Oct: New 6, Returning 0</title></rect><text x="416.1" y="210" font-size="11" fill="#6b665e" text-anchor="middle">5 Oct</text><rect x="436.3" y="167.0" width="20.8" height="27.0" fill="#f26b1d" rx="1.5"><title>6 Oct: New 3, Returning 1</title></rect><rect x="436.3" y="158.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>6 Oct: New 3, Returning 1</title></rect><rect x="466.9" y="185.0" width="20.8" height="9.0" fill="#f26b1d" rx="1.5"><title>7 Oct: New 1, Returning 0</title></rect><text x="507.9" y="210" font-size="11" fill="#6b665e" text-anchor="middle">8 Oct</text><rect x="528.0" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>9 Oct: New 5, Returning 0</title></rect><rect x="558.6" y="185.0" width="20.8" height="9.0" fill="#f26b1d" rx="1.5"><title>10 Oct: New 1, Returning 0</title></rect><rect x="589.2" y="176.0" width="20.8" height="18.0" fill="#f26b1d" rx="1.5"><title>11 Oct: New 2, Returning 0</title></rect><text x="599.6" y="210" font-size="11" fill="#6b665e" text-anchor="middle">11 Oct</text><rect x="619.7" y="176.0" width="20.8" height="18.0" fill="#f26b1d" rx="1.5"><title>12 Oct: New 2, Returning 0</title></rect><rect x="650.3" y="140.0" width="20.8" height="54.0" fill="#f26b1d" rx="1.5"><title>13 Oct: New 6, Returning 1</title></rect><rect x="650.3" y="131.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>13 Oct: New 6, Returning 1</title></rect><rect x="680.9" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>14 Oct: New 5, Returning 0</title></rect><text x="691.3" y="210" font-size="11" fill="#6b665e" text-anchor="middle">14 Oct</text><rect x="711.5" y="176.0" width="20.8" height="18.0" fill="#f26b1d" rx="1.5"><title>15 Oct: New 2, Returning 0</title></rect><rect x="742.0" y="122.0" width="20.8" height="72.0" fill="#f26b1d" rx="1.5"><title>16 Oct: New 8, Returning 0</title></rect><rect x="772.6" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>17 Oct: New 5, Returning 0</title></rect><text x="783.0" y="210" font-size="11" fill="#6b665e" text-anchor="middle">17 Oct</text><rect x="803.2" y="149.0" width="20.8" height="45.0" fill="#f26b1d" rx="1.5"><title>18 Oct: New 5, Returning 1</title></rect><rect x="803.2" y="140.0" width="20.8" height="9.0" fill="#2f5fa7" rx="1.5"><title>18 Oct: New 5, Returning 1</title></rect><rect x="833.7" y="158.0" width="20.8" height="36.0" fill="#f26b1d" rx="1.5"><title>19 Oct: New 4, Returning 0</title></rect><rect x="864.3" y="158.0" width="20.8" height="36.0" fill="#f26b1d" rx="1.5"><title>20 Oct: New 4, Returning 0</title></rect><text x="874.7" y="210" font-size="11" fill="#6b665e" text-anchor="middle">20 Oct</text></svg>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card"><div class="ct">Where users came from</div><svg viewBox="0 0 460 186" width="100%" role="img" style="max-width:460px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">Instagram</text><rect x="110" y="9" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="9" width="300.0" height="16" rx="3" fill="#f26b1d"><title>Instagram: 88</title></rect><text x="418" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">88</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">WhatsApp</text><rect x="110" y="39" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="39" width="81.8" height="16" rx="3" fill="#f26b1d"><title>WhatsApp: 24</title></rect><text x="418" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">24</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">Direct</text><rect x="110" y="69" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="69" width="64.8" height="16" rx="3" fill="#f26b1d"><title>Direct: 19</title></rect><text x="418" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">19</text><text x="0" y="111" font-size="12.5" fill="#1d1b18">Google</text><rect x="110" y="99" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="99" width="10.2" height="16" rx="3" fill="#f26b1d"><title>Google: 3</title></rect><text x="418" y="112" font-size="12.5" font-weight="700" fill="#1d1b18">3</text><text x="0" y="141" font-size="12.5" fill="#1d1b18">ChatGPT</text><rect x="110" y="129" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="129" width="6.8" height="16" rx="3" fill="#f26b1d"><title>ChatGPT: 2</title></rect><text x="418" y="142" font-size="12.5" font-weight="700" fill="#1d1b18">2</text><text x="0" y="171" font-size="12.5" fill="#1d1b18">Bing</text><rect x="110" y="159" width="300" height="16" rx="3" fill="#f0ede8"/><rect x="110" y="159" width="3.4" height="16" rx="3" fill="#f26b1d"><title>Bing: 1</title></rect><text x="418" y="172" font-size="12.5" font-weight="700" fill="#1d1b18">1</text></svg></div>
+      <div class="card"><div class="ct">Top cities (active users)</div><svg viewBox="0 0 460 276" width="100%" role="img" style="max-width:460px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">Mumbai</text><rect x="130" y="9" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="9" width="280.0" height="16" rx="3" fill="#f26b1d"><title>Mumbai: 7</title></rect><text x="418" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">7</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">Pune</text><rect x="130" y="39" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="39" width="280.0" height="16" rx="3" fill="#f26b1d"><title>Pune: 7</title></rect><text x="418" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">7</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">Delhi</text><rect x="130" y="69" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="69" width="240.0" height="16" rx="3" fill="#f26b1d"><title>Delhi: 6</title></rect><text x="418" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">6</text><text x="0" y="111" font-size="12.5" fill="#1d1b18">Karachi</text><rect x="130" y="99" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="99" width="240.0" height="16" rx="3" fill="#f26b1d"><title>Karachi: 6</title></rect><text x="418" y="112" font-size="12.5" font-weight="700" fill="#1d1b18">6</text><text x="0" y="141" font-size="12.5" fill="#1d1b18">East Los Angeles</text><rect x="130" y="129" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="129" width="200.0" height="16" rx="3" fill="#f26b1d"><title>East Los Angeles: 5</title></rect><text x="418" y="142" font-size="12.5" font-weight="700" fill="#1d1b18">5</text><text x="0" y="171" font-size="12.5" fill="#1d1b18">Hyderabad</text><rect x="130" y="159" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="159" width="200.0" height="16" rx="3" fill="#f26b1d"><title>Hyderabad: 5</title></rect><text x="418" y="172" font-size="12.5" font-weight="700" fill="#1d1b18">5</text><text x="0" y="201" font-size="12.5" fill="#1d1b18">Accra</text><rect x="130" y="189" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="189" width="160.0" height="16" rx="3" fill="#f26b1d"><title>Accra: 4</title></rect><text x="418" y="202" font-size="12.5" font-weight="700" fill="#1d1b18">4</text><text x="0" y="231" font-size="12.5" fill="#1d1b18">Islamabad</text><rect x="130" y="219" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="219" width="160.0" height="16" rx="3" fill="#f26b1d"><title>Islamabad: 4</title></rect><text x="418" y="232" font-size="12.5" font-weight="700" fill="#1d1b18">4</text><text x="0" y="261" font-size="12.5" fill="#1d1b18">Lahore</text><rect x="130" y="249" width="280" height="16" rx="3" fill="#f0ede8"/><rect x="130" y="249" width="160.0" height="16" rx="3" fill="#f26b1d"><title>Lahore: 4</title></rect><text x="418" y="262" font-size="12.5" font-weight="700" fill="#1d1b18">4</text></svg></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Google Search Console <small>aspirants.amberstudent.com · last 3 months</small></h2>
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">Clicks</div><div class="value">22</div></div>
+      <div class="card kpi"><div class="label">Impressions</div><div class="value">538</div></div>
+      <div class="card kpi"><div class="label">CTR</div><div class="value">4.1%</div></div>
+      <div class="card kpi"><div class="label">Avg. position</div><div class="value">10.4</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="ct">Impressions per day</div>
+      <svg viewBox="0 0 900 200" width="100%" role="img"><line x1="34" x2="890" y1="164.0" y2="164.0" stroke="#e8e3da"/><text x="28" y="168.0" font-size="11" fill="#6b665e" text-anchor="end">0</text><line x1="34" x2="890" y1="126.5" y2="126.5" stroke="#e8e3da"/><text x="28" y="130.5" font-size="11" fill="#6b665e" text-anchor="end">7.5</text><line x1="34" x2="890" y1="89.0" y2="89.0" stroke="#e8e3da"/><text x="28" y="93.0" font-size="11" fill="#6b665e" text-anchor="end">15</text><line x1="34" x2="890" y1="51.5" y2="51.5" stroke="#e8e3da"/><text x="28" y="55.5" font-size="11" fill="#6b665e" text-anchor="end">22.5</text><line x1="34" x2="890" y1="14.0" y2="14.0" stroke="#e8e3da"/><text x="28" y="18.0" font-size="11" fill="#6b665e" text-anchor="end">30</text><path d="M34.0,59.0 L47.0,74.0 L59.9,114.0 L72.9,129.0 L85.9,74.0 L98.8,84.0 L111.8,44.0 L124.8,94.0 L137.8,74.0 L150.7,124.0 L163.7,104.0 L176.7,114.0 L189.6,84.0 L202.6,59.0 L215.6,39.0 L228.5,129.0 L241.5,114.0 L254.5,99.0 L267.5,89.0 L280.4,119.0 L293.4,19.0 L306.4,59.0 L319.3,64.0 L332.3,119.0 L345.3,159.0 L358.2,139.0 L371.2,44.0 L384.2,154.0 L397.2,149.0 L410.1,154.0 L423.1,159.0 L436.1,154.0 L449.0,139.0 L462.0,154.0 L475.0,149.0 L487.9,159.0 L500.9,154.0 L513.9,164.0 L526.8,129.0 L539.8,144.0 L552.8,154.0 L565.8,139.0 L578.7,154.0 L591.7,149.0 L604.7,159.0 L617.6,119.0 L630.6,114.0 L643.6,129.0 L656.5,119.0 L669.5,144.0 L682.5,139.0 L695.5,154.0 L708.4,154.0 L721.4,159.0 L734.4,144.0 L747.3,149.0 L760.3,154.0 L773.3,139.0 L786.2,149.0 L799.2,144.0 L812.2,159.0 L825.2,139.0 L838.1,159.0 L851.1,144.0 L864.1,134.0 L877.0,154.0 L890.0,159.0 L890.0,164 L34.0,164 Z" fill="#2f5fa7" opacity=".12"/><path d="M34.0,59.0 L47.0,74.0 L59.9,114.0 L72.9,129.0 L85.9,74.0 L98.8,84.0 L111.8,44.0 L124.8,94.0 L137.8,74.0 L150.7,124.0 L163.7,104.0 L176.7,114.0 L189.6,84.0 L202.6,59.0 L215.6,39.0 L228.5,129.0 L241.5,114.0 L254.5,99.0 L267.5,89.0 L280.4,119.0 L293.4,19.0 L306.4,59.0 L319.3,64.0 L332.3,119.0 L345.3,159.0 L358.2,139.0 L371.2,44.0 L384.2,154.0 L397.2,149.0 L410.1,154.0 L423.1,159.0 L436.1,154.0 L449.0,139.0 L462.0,154.0 L475.0,149.0 L487.9,159.0 L500.9,154.0 L513.9,164.0 L526.8,129.0 L539.8,144.0 L552.8,154.0 L565.8,139.0 L578.7,154.0 L591.7,149.0 L604.7,159.0 L617.6,119.0 L630.6,114.0 L643.6,129.0 L656.5,119.0 L669.5,144.0 L682.5,139.0 L695.5,154.0 L708.4,154.0 L721.4,159.0 L734.4,144.0 L747.3,149.0 L760.3,154.0 L773.3,139.0 L786.2,149.0 L799.2,144.0 L812.2,159.0 L825.2,139.0 L838.1,159.0 L851.1,144.0 L864.1,134.0 L877.0,154.0 L890.0,159.0" fill="none" stroke="#2f5fa7" stroke-width="2.2" stroke-linejoin="round"/><circle cx="34.0" cy="59.0" r="7" fill="transparent"><title>13 Aug: 21</title></circle><text x="34.0" y="180" font-size="11" fill="#6b665e" text-anchor="middle">13 Aug</text><circle cx="47.0" cy="74.0" r="7" fill="transparent"><title>14 Aug: 18</title></circle><circle cx="59.9" cy="114.0" r="7" fill="transparent"><title>15 Aug: 10</title></circle><circle cx="72.9" cy="129.0" r="7" fill="transparent"><title>16 Aug: 7</title></circle><circle cx="85.9" cy="74.0" r="7" fill="transparent"><title>17 Aug: 18</title></circle><circle cx="98.8" cy="84.0" r="7" fill="transparent"><title>18 Aug: 16</title></circle><circle cx="111.8" cy="44.0" r="7" fill="transparent"><title>19 Aug: 24</title></circle><circle cx="124.8" cy="94.0" r="7" fill="transparent"><title>20 Aug: 14</title></circle><circle cx="137.8" cy="74.0" r="7" fill="transparent"><title>21 Aug: 18</title></circle><circle cx="150.7" cy="124.0" r="7" fill="transparent"><title>22 Aug: 8</title></circle><circle cx="163.7" cy="104.0" r="7" fill="transparent"><title>23 Aug: 12</title></circle><text x="163.7" y="180" font-size="11" fill="#6b665e" text-anchor="middle">23 Aug</text><circle cx="176.7" cy="114.0" r="7" fill="transparent"><title>24 Aug: 10</title></circle><circle cx="189.6" cy="84.0" r="7" fill="transparent"><title>25 Aug: 16</title></circle><circle cx="202.6" cy="59.0" r="7" fill="transparent"><title>26 Aug: 21</title></circle><circle cx="215.6" cy="39.0" r="7" fill="transparent"><title>27 Aug: 25</title></circle><circle cx="228.5" cy="129.0" r="7" fill="transparent"><title>28 Aug: 7</title></circle><circle cx="241.5" cy="114.0" r="7" fill="transparent"><title>29 Aug: 10</title></circle><circle cx="254.5" cy="99.0" r="7" fill="transparent"><title>30 Aug: 13</title></circle><circle cx="267.5" cy="89.0" r="7" fill="transparent"><title>31 Aug: 15</title></circle><circle cx="280.4" cy="119.0" r="7" fill="transparent"><title>1 Sep: 9</title></circle><circle cx="293.4" cy="19.0" r="7" fill="transparent"><title>2 Sep: 29</title></circle><text x="293.4" y="180" font-size="11" fill="#6b665e" text-anchor="middle">2 Sep</text><circle cx="306.4" cy="59.0" r="7" fill="transparent"><title>3 Sep: 21</title></circle><circle cx="319.3" cy="64.0" r="7" fill="transparent"><title>4 Sep: 20</title></circle><circle cx="332.3" cy="119.0" r="7" fill="transparent"><title>5 Sep: 9</title></circle><circle cx="345.3" cy="159.0" r="7" fill="transparent"><title>6 Sep: 1</title></circle><circle cx="358.2" cy="139.0" r="7" fill="transparent"><title>7 Sep: 5</title></circle><circle cx="371.2" cy="44.0" r="7" fill="transparent"><title>8 Sep: 24</title></circle><circle cx="384.2" cy="154.0" r="7" fill="transparent"><title>9 Sep: 2</title></circle><circle cx="397.2" cy="149.0" r="7" fill="transparent"><title>10 Sep: 3</title></circle><circle cx="410.1" cy="154.0" r="7" fill="transparent"><title>11 Sep: 2</title></circle><circle cx="423.1" cy="159.0" r="7" fill="transparent"><title>12 Sep: 1</title></circle><text x="423.1" y="180" font-size="11" fill="#6b665e" text-anchor="middle">12 Sep</text><circle cx="436.1" cy="154.0" r="7" fill="transparent"><title>13 Sep: 2</title></circle><circle cx="449.0" cy="139.0" r="7" fill="transparent"><title>14 Sep: 5</title></circle><circle cx="462.0" cy="154.0" r="7" fill="transparent"><title>15 Sep: 2</title></circle><circle cx="475.0" cy="149.0" r="7" fill="transparent"><title>16 Sep: 3</title></circle><circle cx="487.9" cy="159.0" r="7" fill="transparent"><title>17 Sep: 1</title></circle><circle cx="500.9" cy="154.0" r="7" fill="transparent"><title>18 Sep: 2</title></circle><circle cx="513.9" cy="164.0" r="7" fill="transparent"><title>19 Sep: 0</title></circle><circle cx="526.8" cy="129.0" r="7" fill="transparent"><title>20 Sep: 7</title></circle><circle cx="539.8" cy="144.0" r="7" fill="transparent"><title>21 Sep: 4</title></circle><circle cx="552.8" cy="154.0" r="7" fill="transparent"><title>22 Sep: 2</title></circle><text x="552.8" y="180" font-size="11" fill="#6b665e" text-anchor="middle">22 Sep</text><circle cx="565.8" cy="139.0" r="7" fill="transparent"><title>23 Sep: 5</title></circle><circle cx="578.7" cy="154.0" r="7" fill="transparent"><title>24 Sep: 2</title></circle><circle cx="591.7" cy="149.0" r="7" fill="transparent"><title>25 Sep: 3</title></circle><circle cx="604.7" cy="159.0" r="7" fill="transparent"><title>26 Sep: 1</title></circle><circle cx="617.6" cy="119.0" r="7" fill="transparent"><title>27 Sep: 9</title></circle><circle cx="630.6" cy="114.0" r="7" fill="transparent"><title>28 Sep: 10</title></circle><circle cx="643.6" cy="129.0" r="7" fill="transparent"><title>29 Sep: 7</title></circle><circle cx="656.5" cy="119.0" r="7" fill="transparent"><title>30 Sep: 9</title></circle><circle cx="669.5" cy="144.0" r="7" fill="transparent"><title>1 Oct: 4</title></circle><circle cx="682.5" cy="139.0" r="7" fill="transparent"><title>2 Oct: 5</title></circle><text x="682.5" y="180" font-size="11" fill="#6b665e" text-anchor="middle">2 Oct</text><circle cx="695.5" cy="154.0" r="7" fill="transparent"><title>3 Oct: 2</title></circle><circle cx="708.4" cy="154.0" r="7" fill="transparent"><title>4 Oct: 2</title></circle><circle cx="721.4" cy="159.0" r="7" fill="transparent"><title>5 Oct: 1</title></circle><circle cx="734.4" cy="144.0" r="7" fill="transparent"><title>6 Oct: 4</title></circle><circle cx="747.3" cy="149.0" r="7" fill="transparent"><title>7 Oct: 3</title></circle><circle cx="760.3" cy="154.0" r="7" fill="transparent"><title>8 Oct: 2</title></circle><circle cx="773.3" cy="139.0" r="7" fill="transparent"><title>9 Oct: 5</title></circle><circle cx="786.2" cy="149.0" r="7" fill="transparent"><title>10 Oct: 3</title></circle><circle cx="799.2" cy="144.0" r="7" fill="transparent"><title>11 Oct: 4</title></circle><circle cx="812.2" cy="159.0" r="7" fill="transparent"><title>12 Oct: 1</title></circle><text x="812.2" y="180" font-size="11" fill="#6b665e" text-anchor="middle">12 Oct</text><circle cx="825.2" cy="139.0" r="7" fill="transparent"><title>13 Oct: 5</title></circle><circle cx="838.1" cy="159.0" r="7" fill="transparent"><title>14 Oct: 1</title></circle><circle cx="851.1" cy="144.0" r="7" fill="transparent"><title>15 Oct: 4</title></circle><circle cx="864.1" cy="134.0" r="7" fill="transparent"><title>16 Oct: 6</title></circle><circle cx="877.0" cy="154.0" r="7" fill="transparent"><title>17 Oct: 2</title></circle><circle cx="890.0" cy="159.0" r="7" fill="transparent"><title>18 Oct: 1</title></circle></svg>
+      <div class="ct" style="margin-top:10px">Clicks per day</div>
+      <svg viewBox="0 0 900 150" width="100%" role="img"><line x1="34" x2="890" y1="114.0" y2="114.0" stroke="#e8e3da"/><text x="28" y="118.0" font-size="11" fill="#6b665e" text-anchor="end">0</text><line x1="34" x2="890" y1="89.0" y2="89.0" stroke="#e8e3da"/><text x="28" y="93.0" font-size="11" fill="#6b665e" text-anchor="end">2</text><line x1="34" x2="890" y1="64.0" y2="64.0" stroke="#e8e3da"/><text x="28" y="68.0" font-size="11" fill="#6b665e" text-anchor="end">4</text><line x1="34" x2="890" y1="39.0" y2="39.0" stroke="#e8e3da"/><text x="28" y="43.0" font-size="11" fill="#6b665e" text-anchor="end">6</text><line x1="34" x2="890" y1="14.0" y2="14.0" stroke="#e8e3da"/><text x="28" y="18.0" font-size="11" fill="#6b665e" text-anchor="end">8</text><rect x="36.0" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>13 Aug: Clicks 1</title></rect><text x="40.4" y="130" font-size="11" fill="#6b665e" text-anchor="middle">13 Aug</text><rect x="48.8" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>14 Aug: Clicks 1</title></rect><rect x="61.6" y="51.5" width="8.7" height="62.5" fill="#f26b1d" rx="1.5"><title>15 Aug: Clicks 5</title></rect><rect x="74.4" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>16 Aug: Clicks 1</title></rect><rect x="87.1" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>17 Aug: Clicks 1</title></rect><text x="168.1" y="130" font-size="11" fill="#6b665e" text-anchor="middle">23 Aug</text><rect x="202.1" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>26 Aug: Clicks 1</title></rect><rect x="227.7" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>28 Aug: Clicks 1</title></rect><rect x="266.0" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>31 Aug: Clicks 1</title></rect><rect x="291.6" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>2 Sep: Clicks 1</title></rect><text x="295.9" y="130" font-size="11" fill="#6b665e" text-anchor="middle">2 Sep</text><rect x="304.3" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>3 Sep: Clicks 1</title></rect><rect x="355.4" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>7 Sep: Clicks 1</title></rect><rect x="368.2" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>8 Sep: Clicks 1</title></rect><text x="423.7" y="130" font-size="11" fill="#6b665e" text-anchor="middle">12 Sep</text><rect x="483.2" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>17 Sep: Clicks 1</title></rect><rect x="534.3" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>21 Sep: Clicks 1</title></rect><text x="551.4" y="130" font-size="11" fill="#6b665e" text-anchor="middle">22 Sep</text><rect x="585.4" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>25 Sep: Clicks 1</title></rect><rect x="636.5" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>29 Sep: Clicks 1</title></rect><rect x="649.3" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>30 Sep: Clicks 1</title></rect><text x="679.2" y="130" font-size="11" fill="#6b665e" text-anchor="middle">2 Oct</text><text x="807.0" y="130" font-size="11" fill="#6b665e" text-anchor="middle">12 Oct</text><rect x="853.7" y="101.5" width="8.7" height="12.5" fill="#f26b1d" rx="1.5"><title>16 Oct: Clicks 1</title></rect></svg>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card"><div class="ct">Impressions by country</div><svg viewBox="0 0 460 246" width="100%" role="img" style="max-width:460px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">India</text><rect x="120" y="9" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="9" width="290.0" height="16" rx="3" fill="#2f5fa7"><title>India: 208</title></rect><text x="418" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">208</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">United States</text><rect x="120" y="39" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="39" width="136.6" height="16" rx="3" fill="#2f5fa7"><title>United States: 98</title></rect><text x="418" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">98</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">Pakistan</text><rect x="120" y="69" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="69" width="58.6" height="16" rx="3" fill="#2f5fa7"><title>Pakistan: 42</title></rect><text x="418" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">42</text><text x="0" y="111" font-size="12.5" fill="#1d1b18">United Kingdom</text><rect x="120" y="99" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="99" width="55.8" height="16" rx="3" fill="#2f5fa7"><title>United Kingdom: 40</title></rect><text x="418" y="112" font-size="12.5" font-weight="700" fill="#1d1b18">40</text><text x="0" y="141" font-size="12.5" fill="#1d1b18">Philippines</text><rect x="120" y="129" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="129" width="25.1" height="16" rx="3" fill="#2f5fa7"><title>Philippines: 18</title></rect><text x="418" y="142" font-size="12.5" font-weight="700" fill="#1d1b18">18</text><text x="0" y="171" font-size="12.5" fill="#1d1b18">Bangladesh</text><rect x="120" y="159" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="159" width="11.2" height="16" rx="3" fill="#2f5fa7"><title>Bangladesh: 8</title></rect><text x="418" y="172" font-size="12.5" font-weight="700" fill="#1d1b18">8</text><text x="0" y="201" font-size="12.5" fill="#1d1b18">Indonesia</text><rect x="120" y="189" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="189" width="11.2" height="16" rx="3" fill="#2f5fa7"><title>Indonesia: 8</title></rect><text x="418" y="202" font-size="12.5" font-weight="700" fill="#1d1b18">8</text><text x="0" y="231" font-size="12.5" fill="#1d1b18">Australia</text><rect x="120" y="219" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="219" width="9.8" height="16" rx="3" fill="#2f5fa7"><title>Australia: 7</title></rect><text x="418" y="232" font-size="12.5" font-weight="700" fill="#1d1b18">7</text></svg></div>
+      <div class="card"><div class="ct">Clicks by country</div><svg viewBox="0 0 460 246" width="100%" role="img" style="max-width:460px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">India</text><rect x="120" y="9" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="9" width="290.0" height="16" rx="3" fill="#f26b1d"><title>India: 9</title></rect><text x="418" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">9</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">Pakistan</text><rect x="120" y="39" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="39" width="128.9" height="16" rx="3" fill="#f26b1d"><title>Pakistan: 4</title></rect><text x="418" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">4</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">United States</text><rect x="120" y="69" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="69" width="64.4" height="16" rx="3" fill="#f26b1d"><title>United States: 2</title></rect><text x="418" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">2</text><text x="0" y="111" font-size="12.5" fill="#1d1b18">United Kingdom</text><rect x="120" y="99" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="99" width="32.2" height="16" rx="3" fill="#f26b1d"><title>United Kingdom: 1</title></rect><text x="418" y="112" font-size="12.5" font-weight="700" fill="#1d1b18">1</text><text x="0" y="141" font-size="12.5" fill="#1d1b18">Australia</text><rect x="120" y="129" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="129" width="32.2" height="16" rx="3" fill="#f26b1d"><title>Australia: 1</title></rect><text x="418" y="142" font-size="12.5" font-weight="700" fill="#1d1b18">1</text><text x="0" y="171" font-size="12.5" fill="#1d1b18">UAE</text><rect x="120" y="159" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="159" width="32.2" height="16" rx="3" fill="#f26b1d"><title>UAE: 1</title></rect><text x="418" y="172" font-size="12.5" font-weight="700" fill="#1d1b18">1</text><text x="0" y="201" font-size="12.5" fill="#1d1b18">Netherlands</text><rect x="120" y="189" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="189" width="32.2" height="16" rx="3" fill="#f26b1d"><title>Netherlands: 1</title></rect><text x="418" y="202" font-size="12.5" font-weight="700" fill="#1d1b18">1</text><text x="0" y="231" font-size="12.5" fill="#1d1b18">Ghana</text><rect x="120" y="219" width="290" height="16" rx="3" fill="#f0ede8"/><rect x="120" y="219" width="32.2" height="16" rx="3" fill="#f26b1d"><title>Ghana: 1</title></rect><text x="418" y="232" font-size="12.5" font-weight="700" fill="#1d1b18">1</text></svg></div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card"><div class="ct">Top search queries (impressions)</div><svg viewBox="0 0 520 156" width="100%" role="img" style="max-width:520px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">site:amberstudent.com</text><rect x="250" y="9" width="220" height="16" rx="3" fill="#f0ede8"/><rect x="250" y="9" width="220.0" height="16" rx="3" fill="#2f5fa7"><title>site:amberstudent.com: 225</title></rect><text x="478" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">225</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">amber study abroad</text><rect x="250" y="39" width="220" height="16" rx="3" fill="#f0ede8"/><rect x="250" y="39" width="27.4" height="16" rx="3" fill="#2f5fa7"><title>amber study abroad: 28</title></rect><text x="478" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">28</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">netherlands student accom. amber</text><rect x="250" y="69" width="220" height="16" rx="3" fill="#f0ede8"/><rect x="250" y="69" width="23.5" height="16" rx="3" fill="#2f5fa7"><title>netherlands student accom. amber: 24</title></rect><text x="478" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">24</text><text x="0" y="111" font-size="12.5" fill="#1d1b18">site:https://amberstudent.com/</text><rect x="250" y="99" width="220" height="16" rx="3" fill="#f0ede8"/><rect x="250" y="99" width="8.8" height="16" rx="3" fill="#2f5fa7"><title>site:https://amberstudent.com/: 9</title></rect><text x="478" y="112" font-size="12.5" font-weight="700" fill="#1d1b18">9</text><text x="0" y="141" font-size="12.5" fill="#1d1b18">site:https://amberstudent.com</text><rect x="250" y="129" width="220" height="16" rx="3" fill="#f0ede8"/><rect x="250" y="129" width="4.9" height="16" rx="3" fill="#2f5fa7"><title>site:https://amberstudent.com: 5</title></rect><text x="478" y="142" font-size="12.5" font-weight="700" fill="#1d1b18">5</text></svg></div>
+      <div class="card"><div class="ct">Impressions by device</div><svg viewBox="0 0 460 96" width="100%" role="img" style="max-width:460px"><text x="0" y="21" font-size="12.5" fill="#1d1b18">Desktop</text><rect x="80" y="9" width="330" height="16" rx="3" fill="#f0ede8"/><rect x="80" y="9" width="330.0" height="16" rx="3" fill="#2f5fa7"><title>Desktop: 423</title></rect><text x="418" y="22" font-size="12.5" font-weight="700" fill="#1d1b18">423</text><text x="0" y="51" font-size="12.5" fill="#1d1b18">Mobile</text><rect x="80" y="39" width="330" height="16" rx="3" fill="#f0ede8"/><rect x="80" y="39" width="88.9" height="16" rx="3" fill="#2f5fa7"><title>Mobile: 114</title></rect><text x="418" y="52" font-size="12.5" font-weight="700" fill="#1d1b18">114</text><text x="0" y="81" font-size="12.5" fill="#1d1b18">Tablet</text><rect x="80" y="69" width="330" height="16" rx="3" fill="#f0ede8"/><rect x="80" y="69" width="2.0" height="16" rx="3" fill="#2f5fa7"><title>Tablet: 1</title></rect><text x="418" y="82" font-size="12.5" font-weight="700" fill="#1d1b18">1</text></svg></div>
+    </div>
+  </section>
+</div>
+
+<div class="foot">Message counts exclude join, leave and other system notifications. Active members = people who posted at least once in the period.</div>
+</div>
+
+<script>
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.p).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
